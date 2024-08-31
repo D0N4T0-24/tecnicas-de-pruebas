@@ -18,7 +18,22 @@ describe('Fail Based Tests', () => {
     });
 });
 describe('Use Based Tests', () => {
- // Desarrollar aquí pruebas Basadas en el Uso
+
+  // Prueba 1: Autenticación de un usuario registrado
+  test('should authenticate a registered user', () => {
+    reset(); // Reinicia el sistema
+    register('user1', 'password1'); // Registra al usuario "user1"
+    const isAuthenticated = authenticate('user1', 'password1'); // Intenta autenticar al usuario
+    expect(isAuthenticated).toBe(true); // Verifica que la autenticación fue exitosa
+  });
+
+  // Prueba 2: Intento de autenticación de un usuario no registrado
+  test('should not authenticate a non-registered user', () => {
+    reset(); // Reinicia el sistema
+    const isAuthenticated = authenticate('user2', 'password2'); // Intenta autenticar al usuario "user2" que no está registrado
+    expect(isAuthenticated).toBe(false); // Verifica que la autenticación falla
+  });
+
 });
 describe('Model Based Tests', () => {
   // Prueba 1: Transición de "No registrado" a "Registrado"
