@@ -21,5 +21,19 @@ describe('Use Based Tests', () => {
  // Desarrollar aquí pruebas Basadas en el Uso
 });
 describe('Model Based Tests', () => {
- // Desarrollar aquí pruebas Basadas en Modelos
+  // Prueba 1: Transición de "No registrado" a "Registrado"
+  test('should transition from Not Registered to Registered', () => {
+    reset(); // Reinicia el sistema
+    register('user1', 'password1'); // Registra un nuevo usuario
+    expect(authenticate('user1', 'password1')).toBe(true); // Verifica que el usuario puede autenticarse
+  });
+
+  // Prueba 2: Transición de "Registrado" a "Autenticado"
+  test('should transition from Registered to Authenticated', () => {
+    reset(); // Reinicia el sistema
+    register('user1', 'password1'); // Registra un nuevo usuario
+    const isAuthenticated = authenticate('user1', 'password1'); // Autentica al usuario
+    expect(isAuthenticated).toBe(true); // Verifica que el usuario está autenticado
+  });
 });
+
